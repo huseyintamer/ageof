@@ -13,10 +13,10 @@ import {
   Dimensions,
   TouchableHighlight
 } from 'react-native';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
 const {width, height} = Dimensions.get('screen');
 
-const Headlines = () => {
+function Headlines({ navigation }) {
 
 const category = 'structures';
 
@@ -36,25 +36,21 @@ const url = `https://age-of-empires-2-api.herokuapp.com/api/v1/${category}`;
 
 renderItem = ({item}) => {
     return(
-   
+        <TouchableHighlight onPress={() => navigation.navigate('headlinesdetail', { data: item })}>
         <View style={{ flex: 1, width,flexDirection: 'row', padding: 10, borderBottom: 1, borderBottomWidth: 1, borderBottomColor: '#eee' }}>
       
-       
+      <Icon name="home" size={20} style={{paddingRight:10}} />
           <Text >{item.name}</Text>
-          <View style={{ flex: 1,marginLeft:55, flexDirection: 'row', justifyContent: 'flex-end', alignItems:'center' }}>
+     
       
-      <Text>{item.age}</Text>
-    </View>
     <View style={{ flex: 1,marginLeft:55, flexDirection: 'row', justifyContent: 'flex-end', alignItems:'flex-end' }}>
-      
+ 
       <Text>{item.cost.Wood}</Text>
+      <Icon name="tree" size={20} style={{paddingLeft:10}}/>
     </View>
-          <View style={{ flex: 1,marginLeft:55, flexDirection: 'row', justifyContent: 'flex-end', alignItems:'flex-end' }}>
-      
-            <Text>{item.build_time}</Text>
-          </View>
+          
        
-      </View> );
+      </View></TouchableHighlight> );
     
    
 }
